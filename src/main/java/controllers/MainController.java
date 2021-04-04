@@ -91,6 +91,15 @@ public class MainController {
                     ctx.render("/templates/form.html");
                 });
 
+                get("/crear", ctx -> {
+                    String nombre = ctx.formParam("nombre");
+                    String sector = ctx.formParam("sector");
+                    String academico = ctx.formParam("selected");
+
+                    // Form form = new Form("","",);
+                });
+
+
             });
 
 
