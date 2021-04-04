@@ -6,9 +6,11 @@ import encapsulations.User;
 import io.javalin.Javalin;
 import io.javalin.plugin.json.JavalinJson;
 import org.h2.util.json.JSONObject;
+import org.jasypt.util.text.StrongTextEncryptor;
 import services.UserServices;
 
 import java.sql.SQLException;
+import java.util.Objects;
 
 import static io.javalin.apibuilder.ApiBuilder.*;
 
@@ -45,26 +47,33 @@ public class MainController {
                before("/", ctx -> {
                    Gson auxJson = new Gson();
                    User u = auxJson.fromJson(ctx.body(),User.class); //User object from client request
-
+                   System.out.println(u.getUsername() + u.getPassword());
                    User auxUser = UserServices.getInstancia().checkLoginUser(u.getUsername(),u.getPassword());
-                  /* String username = ctx.formParam("username");
-                   String password = ctx.formParam("password");
-                   User auxUser = UserServices.getInstancia().checkLoginUser(username,password);*/
+                /*  String username = ctx.formParam("username");
+                  String password = ctx.formParam("password");
+                  User auxUser = UserServices.getInstancia().checkLoginUser(username,password);*/
 
                    if (auxUser == null){
-                        ctx.result("ERROR");
-                    } else {
-                        ctx.attribute("userFound", auxUser.getUsername());
-                    }
+                       ctx.status(404);
+                       ctx.result("USURNAME OR PASSWORD INCORRECT!");// arreglara para mandar mensaje de error de credenciales
+
+                   }else{
+                       ctx.attribute("userFound", auxUser);
+                       /*if (ctx.formParam("chkRemember") != null){
+                           StrongTextEncryptor stE = new StrongTextEncryptor();
+                           stE.setPassword("myEncryptionPassword");
+                           String userEncryp = stE.encrypt(auxUser.getUsername());
+                           ctx.cookie("user_remembered", userEncryp,604800);
+                       }*/
+                   }
                });
 
                post("/", ctx -> {
                    ctx.sessionAttribute("user_logged",ctx.attribute("userFound"));
-                   ctx.redirect("/home");
+                   Gson auxJson = new Gson();
+                   String u = auxJson.toJson(ctx.sessionAttribute("user_logged"),User.class);
+                   ctx.json(u);
                });
-                after("/", ctx -> {
-                    ctx.redirect("/home");
-                });
 
             });
 

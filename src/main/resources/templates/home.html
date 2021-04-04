@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="/css/style.css" type="text/css"/>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
@@ -37,14 +37,18 @@
         <div class="collapse navbar-collapse flex-grow-0" id="navbarNavResponsive">
             <ul class="navbar-nav text-right">
                 <li class="nav-item">
-                    <a class="nav-link" href="/products">Products</a>
+                    <a class="nav-link" href="/products">Survey Form</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/productsadmin/saleshistory">Sales History</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Management
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">Create User</a>
+                        <a class="dropdown-item" href="#" target="_blank">Survey Form  <span class="badge badge-pill badge-primary">Data</span></a>
+                    </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/productsadmin">Manage Products</a>
-                </li>
+
 
 
             </ul>
