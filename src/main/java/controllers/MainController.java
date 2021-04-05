@@ -40,6 +40,7 @@ public class MainController {
                     ctx.render("public/index.html");
                 });
 
+
             });
 
             path("/authenticate", () -> {
@@ -97,6 +98,14 @@ public class MainController {
                     String academico = ctx.formParam("selected");
 
                     // Form form = new Form("","",);
+                });
+
+
+            });
+
+            path("/user", ()->{
+                get("/", ctx -> {
+                    ctx.render("/templates/userNew.html");
                 });
 
 
