@@ -470,6 +470,10 @@ input {
   position: relative;
   margin-bottom: 22px;
 }
+.select2-container--default .select2-results__option {
+  padding-left: 22px;
+  color: black !important;
+}
 
 .input-group-icon {
   position: relative;

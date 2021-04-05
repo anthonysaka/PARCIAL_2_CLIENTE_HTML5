@@ -25,4 +25,21 @@
             });
         });
 
+        if(window.location !== "/home"){
+            $(document).ready(function () {
+                let userJson = JSON.parse(JSON.parse(sessionStorage.getItem('user_logged')))
+                //console.log(userJson['rol'])
+                if (userJson['rol'] !== 'admin') {
+                    console.log("")
+                    $('#navbarDropdownMenuLink').hide()
+                }
+
+            });
+
+
+        }
+
+
+
     });
+

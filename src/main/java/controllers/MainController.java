@@ -30,7 +30,7 @@ public class MainController {
 
 
     public void routesControl(){
-        app.get("/", ctx -> ctx.redirect("/login"));
+        app.get("/", ctx -> ctx.redirect("/home"));
 
         app.routes(() -> {
 
@@ -78,6 +78,14 @@ public class MainController {
             });
 
             path("/home", () -> {
+
+                before("/", ctx -> {
+                    User auxUser = ctx.sessionAttribute("user_logged");
+                    if (auxUser == null){
+                        tempURI = ctx.req.getRequestURI();
+                        ctx.redirect("/login");
+                    }
+                });
 
                 get("/", ctx -> {
                     ctx.render("/templates/home.html");
