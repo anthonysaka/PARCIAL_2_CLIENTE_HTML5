@@ -57,7 +57,6 @@ public class MainController {
                    if (auxUser == null){
                        ctx.status(404);
                        ctx.result("USURNAME OR PASSWORD INCORRECT!");// arreglara para mandar mensaje de error de credenciales
-
                    }else{
                        ctx.attribute("userFound", auxUser);
                        /*if (ctx.formParam("chkRemember") != null){
@@ -68,7 +67,6 @@ public class MainController {
                        }*/
                    }
                });
-
                post("/", ctx -> {
                    ctx.sessionAttribute("user_logged",ctx.attribute("userFound"));
                    Gson auxJson = new Gson();

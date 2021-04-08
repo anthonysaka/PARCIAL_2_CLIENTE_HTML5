@@ -17,6 +17,7 @@
     <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
 
+
     <!-- Main CSS-->
     <link href="css/style.css" rel="stylesheet" media="all">
 </head>
@@ -28,18 +29,18 @@
         <div class="card card-4">
             <div class="card-body">
                 <h2 class="title">Registro</h2>
-                <form method="POST" name="/formulario/crear">
+                <form id="surveyForm" action="" method="post">
                     <div class="row row-space">
                         <div class="col-2">
                             <div class="input-group">
                                 <label class="label">Nombre</label>
-                                <input class="input--style-4" type="text" name="nombre"  pattern="[A-Za-z]>
+                                <input class="input--style-4" type="text" name="nombre" id="name">
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="input-group">
                                 <label class="label">Sector</label>
-                                <input class="input--style-4" type="text" name="sector">
+                                <input class="input--style-4" type="text" name="sector" id="sector">
                             </div>
                         </div>
                     </div>
@@ -47,13 +48,13 @@
                     <div class="input-group">
                         <label class="label">Subject</label>
                         <div class="rs-select2 js-select-simple select--no-search">
-                            <select name="subject">
+                            <select name="subject" id="subject">
                                 <option disabled="disabled" selected="selected">Choose option</option>
-                                <option value="volvo">Basico</option>
-                                <option value="saab">Medio</option>
-                                <option value="mercedes">Universitario</option>
-                                <option value="audi">Postgrado</option>
-                                <option value="audi">Doctorado</option>
+                                <option value="Basico">Basico</option>
+                                <option value="Medio">Medio</option>
+                                <option value="Universitario">Universitario</option>
+                                <option value="Postgrado">Postgrado</option>
+                                <option value="Doctorado">Doctorado</option>
                             </select>
                             <div class="select-dropdown"></div>
                         </div>
@@ -75,10 +76,11 @@
 <script src="vendor/select2/select2.min.js"></script>
 <script src="vendor/datepicker/moment.min.js"></script>
 <script src="vendor/datepicker/daterangepicker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/geolocator/2.1.5/geolocator.min.js" integrity="sha512-R0ksqyRZYwP5ngAjS9KwXAPh4H0OiesjRspjvDn5NcgLeSqRWX+JYb792Aw0yuRKl9lDx3S9g+g/fr+DFgtpyg==" crossorigin="anonymous"></script>
 
 <!-- Main JS-->
 <script src="js/global.js"></script>
-
+<script src="js/form.js"></script>
 </body><
 
 </html>
