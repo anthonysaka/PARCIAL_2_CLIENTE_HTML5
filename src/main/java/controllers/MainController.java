@@ -112,8 +112,13 @@ public class MainController {
             });
 
             path("/user", ()->{
+
                 get("/", ctx -> {
                     ctx.render("/templates/userNew.html");
+                });
+
+                post("/crear", ctx -> {
+                    ctx.redirect("/formulario");
                 });
 
 

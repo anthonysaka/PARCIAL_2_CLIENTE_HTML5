@@ -11,5 +11,4 @@ $("#UserNew").submit(function (event) {
 
     localStorage.setItem("user", JSON.stringify(User));
     console.log(localStorage.getItem("user"))
-
 });
