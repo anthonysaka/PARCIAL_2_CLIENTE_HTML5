@@ -1,6 +1,5 @@
 
 $(document).ready(function () {
-
     geolocator.config({
         language: "en",
     });
@@ -31,7 +30,7 @@ $(document).ready(function () {
             let formdata = {
                 name: $("#name").val(),
                 sector: $("#sector").val(),
-                subject: $("#subject").val(),
+                grade: $("#grade").val(),
                 latitude: lat,
                 longitude: long,
                 user_creador: JSON.parse(JSON.parse(sessionStorage.getItem('user_logged')))['username'],
@@ -39,24 +38,40 @@ $(document).ready(function () {
             confirm("*** DATOS A ENVIAR ***\n\n"+JSON.stringify(formdata)) ? savetolocalstorage(formdata) : null;
 
         });
+    });
 
-        let savetolocalstorage = (formdata) => {
-            let auxForm = localStorage.getItem('form_local_saved');
+    //Function to save form data to localstorage
+    let savetolocalstorage = (formdata) => {
+        let auxForm = localStorage.getItem('form_local_saved');
 
-            if (auxForm != null){
-                let x = JSON.parse(auxForm)
-                x.push(formdata)
-                localStorage.setItem('form_local_saved',JSON.stringify(x));
-            } else {
-                localStorage.setItem('form_local_saved',JSON.stringify([formdata]));
-            }
+        if (auxForm != null){
+            let x = JSON.parse(auxForm)
+            x.push(formdata)
+            localStorage.setItem('form_local_saved',JSON.stringify(x));
+        } else {
+            localStorage.setItem('form_local_saved',JSON.stringify([formdata]));
         }
 
+        loadOnTableFormLocalStorage();
+    }
 
+    let loadOnTableFormLocalStorage = () => {
+        let auxData = localStorage.getItem('form_local_saved');
+        let jsonForms;
+        if (auxData != null) {
+            jsonForms = JSON.parse(auxData);
 
+            jsonForms.forEach(function (item,i){
+                var markup = "<tr><td class=\"column1\">" + item.name + "</td><td class=\"column2\">" + item.sector + "</td><td class=\"column3\">" + item.grade +
+                    "</td><td class=\"column2\"><button type='button' class=\"btn btn-primary btn-md rounded \">Edit</button>" +
+                    "</td><td class=\"column2\"><button type='button' class=\"btn btn-danger btn-md rounded \">Delete</button></td></tr>";
+                $("table tbody").append(markup);
+            })
+        }
+    }
 
+    loadOnTableFormLocalStorage();
 
-    });
 
 
 
