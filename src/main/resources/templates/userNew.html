@@ -28,24 +28,24 @@
         <div class="card card-4">
             <div class="card-body">
                 <h2 class="title">Registrar Usuario</h2>
-                <form  id="UserNew" method="POST" name="/user">
+                <form  id="UserNew" method="POST" name="/user/crear">
                     <div class="row row-space">
                         <div class="col-2">
                             <div class="input-group">
                                 <label class="label">Nombre</label>
-                                <input class="input--style-4" type="text" name="nombre">
+                                <input class="input--style-4" type="text" name="nombre" id="nombre">
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="input-group">
                                 <label class="label">Usuario</label>
-                                <input class="input--style-4" type="text" name="user">
+                                <input class="input--style-4" type="text" name="user" id="user">
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="input-group">
                                 <label class="label">Password</label>
-                                <input class="input--style-4" type="text" name="password">
+                                <input class="input--style-4" type="text" name="password" id="password">
                             </div>
                         </div>
 
@@ -54,7 +54,7 @@
                     <div class="input-group">
                         <label class="label">Rol</label>
                         <div class="rs-select2 js-select-simple select--no-search">
-                            <select name="subject">
+                            <select name="subject" id="subject">
                                 <option disabled="disabled" selected="rol">Choose option</option>
                                 <option value="volvo">Admin</option>
                                 <option value="saab">Encuestador</option>
@@ -81,7 +81,7 @@
 <script src="../public/vendor/datepicker/daterangepicker.js"></script>
 
 <!-- Main JS-->
-<script src="../public/js/global.js"></script>
+<script src="js/user.js"></script>
 
 </body><
 
