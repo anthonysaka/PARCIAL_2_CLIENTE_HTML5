@@ -61,7 +61,7 @@ $(document).ready(function () {
         if (auxData != null) {
             jsonForms = JSON.parse(auxData);
 
-            $("#tableLocalForm tr").remove();
+            $("#tbodyLocalForm").empty();
 
             jsonForms.forEach(function (item,i){
                 var markup = "<tr><td class=\"column1\">" + item.name + "</td><td class=\"column2\">" + item.sector + "</td><td class=\"column3\">" + item.grade +
