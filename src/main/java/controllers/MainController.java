@@ -44,7 +44,6 @@ public class MainController {
             });
 
             path("/authenticate", () -> {
-
                before("/", ctx -> {
                    Gson auxJson = new Gson();
                    User u = auxJson.fromJson(ctx.body(),User.class); //User object from client request
@@ -53,7 +52,6 @@ public class MainController {
                 /*  String username = ctx.formParam("username");
                   String password = ctx.formParam("password");
                   User auxUser = UserServices.getInstancia().checkLoginUser(username,password);*/
-
                    if (auxUser == null){
                        ctx.status(404);
                        ctx.result("USURNAME OR PASSWORD INCORRECT!");// arreglara para mandar mensaje de error de credenciales
@@ -87,6 +85,8 @@ public class MainController {
                 });
 
                 get("/", ctx -> {
+                    
+
                     ctx.render("/templates/home.html");
                 });
 
@@ -116,7 +116,7 @@ public class MainController {
                 });
 
                 post("/crear", ctx -> {
-                    ctx.redirect("/formulario");
+                    //ctx.render("/templates/home.html");
                 });
 
 
