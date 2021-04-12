@@ -19,17 +19,16 @@ public class UserServices extends ORMDBManage<User>{
 
     /**/
 
-    public User checkLoginUser(String username, String password) {
-        User auxUser = find(username);//search by id object
-
-        if (auxUser == null){
-            return null;
-        } else {
-            auxUser = auxUser.getPassword().equalsIgnoreCase(password) ? auxUser : null;
-            return  auxUser;
+    public User checkLoginUser(User user) {
+        User auxU = null;
+        for (User u : UserServices.getInstancia().findAll()) {
+            if (u.getUsername().equalsIgnoreCase(user.getUsername())
+                    && u.getPassword().equals(user.getPassword())) {
+                auxU = u;
+                break;
+            }
         }
-
-
+        return auxU;
     }
 
 

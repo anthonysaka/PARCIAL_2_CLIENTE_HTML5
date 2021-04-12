@@ -10,7 +10,7 @@ import java.util.List;
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     @NotNull
     private String username;
     @NotNull
@@ -24,7 +24,6 @@ public class User implements Serializable {
     private List<Form> lista_forms;  ///AGREGAR SET & GET
 
     public User(String username, String password, String rol, String nombre) {
-        this.id = id;
         this.username = username;
         this.password = password;
         this.rol = rol;
@@ -35,11 +34,12 @@ public class User implements Serializable {
 
     }
 
-    public int getId() {
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -25,7 +25,6 @@ import java.util.Objects;
 
 import static io.javalin.apibuilder.ApiBuilder.*;
 
-
 public class MainController {
     Javalin app;
     static String tempURI = "";
@@ -42,7 +41,6 @@ public class MainController {
         UserServices.getInstancia().modify(admin);
 
     }
-
 
     public void routesControl(){
         app.get("/", ctx -> ctx.redirect("/home"));
@@ -62,7 +60,7 @@ public class MainController {
                    Gson auxJson = new Gson();
                    User u = auxJson.fromJson(ctx.body(),User.class); //User object from client request
                    System.out.println(u.getUsername() + u.getPassword());
-                   User auxUser = UserServices.getInstancia().checkLoginUser(u.getUsername(),u.getPassword());
+                   User auxUser = UserServices.getInstancia().checkLoginUser(u);
                 /*  String username = ctx.formParam("username");
                   String password = ctx.formParam("password");
                   User auxUser = UserServices.getInstancia().checkLoginUser(username,password);*/
@@ -99,8 +97,6 @@ public class MainController {
                 });
 
                 get("/", ctx -> {
-                    
-
                     ctx.render("/templates/home.html");
                 });
 
@@ -116,19 +112,14 @@ public class MainController {
                     String nombre = ctx.formParam("nombre");
                     String sector = ctx.formParam("sector");
                     String academico = ctx.formParam("selected");
-
-                    // Form form = new Form("","",);
                 });
-
 
             });
 
             path("/user", ()->{
-
                 get("/", ctx -> {
                     ctx.render("/templates/userNew.html");
                 });
-
                 post("/crear", ctx -> {
                     Gson auxJson = new Gson();
                     User user = auxJson.fromJson(ctx.body(),User.class); //User object from client request
@@ -136,10 +127,22 @@ public class MainController {
                     UserServices.getInstancia().create(nuewUs);
                     ctx.json(nuewUs);
                 });
-
-
             });
 
+            path("/surveydata", ()-> {
+                get("/", ctx -> {
+                    ctx.render("/templates/maps.html");
+                });
+
+                get("/maps", ctx -> {
+                    List<Registry> auxReg = RegistryServices.getInstancia().findAll();
+                    System.out.println(auxReg.get(0));
+                    Gson auxGson = new Gson();
+                    //String jsonString = auxGson.toJson(auxReg);
+                   // System.out.println(jsonString);
+                });
+
+            });
 
 
         });
@@ -176,7 +179,7 @@ public class MainController {
                 //JSON string to Java object
                 FormDataTemplate dfT = auxGson.fromJson(ctx.message(), FormDataTemplate.class);
 
-                User auxUCreator = UserServices.getInstancia().find(dfT.getUser_creador());
+                User auxUCreator = UserServices.getInstancia().find(dfT.getUser_id());
 
                 Form auxForm = new Form(dfT.getName(), dfT.getSector(), dfT.getGrade(),auxUCreator);
                 FormServices.getInstancia().create(auxForm);
