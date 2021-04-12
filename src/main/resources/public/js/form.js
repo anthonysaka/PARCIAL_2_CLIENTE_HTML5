@@ -57,6 +57,7 @@ $(document).ready(function () {
                 latitude: lat,
                 longitude: long,
                 user_creador: JSON.parse(JSON.parse(sessionStorage.getItem('user_logged')))['username'],
+                user_id: JSON.parse(JSON.parse(sessionStorage.getItem('user_logged')))['id'],
                 created_date: dateTime,
                 sync_status: 0
             }

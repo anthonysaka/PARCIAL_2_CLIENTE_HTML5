@@ -198,6 +198,7 @@ btn .btn-primary{
 
 .jumbotron{
   /*background-color: #0E0E0E !important;*/
+  background-color: white !important;
   border-radius: 0px !important;
 }
 h3.heading {
@@ -439,4 +440,17 @@ tbody tr:hover {
     padding-right: 15px;
   }
 }
+
+#map {
+
+  height: 80vh;
+  width: 100%;
+}
+
+#actualizar{
+  alignment: right;
+  position: absolute;
+  width: available;
+}
+
 

@@ -13,8 +13,9 @@ public class FormDataTemplate {
     private Float longitude;
     private String created_date;
     private String user_creador;
+    private Long user_id;
 
-    public FormDataTemplate(String name, String sector, String grade, Float latitude, Float longitude, String created_date, String user_creador) {
+    public FormDataTemplate(String name, String sector, String grade, Float latitude, Float longitude, String created_date, String user_creador, Long user_id) {
         this.name = name;
         this.sector = sector;
         this.grade = grade;
@@ -22,6 +23,7 @@ public class FormDataTemplate {
         this.longitude = longitude;
         this.created_date = created_date;
         this.user_creador = user_creador;
+        this.user_id = user_id;
     }
 
     public String getName() {
@@ -78,5 +80,13 @@ public class FormDataTemplate {
 
     public void setUser_creador(String user_creador) {
         this.user_creador = user_creador;
+    }
+
+    public Long getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Long user_id) {
+        this.user_id = user_id;
     }
 }

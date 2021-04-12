@@ -2,99 +2,120 @@
 <html lang='en'>
 <head>
     <meta charset='utf-8' />
-    <title>Add custom markers in Mapbox GL JS</title>
     <meta name='viewport' content='width=device-width, initial-scale=1' />
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
+    <title>Survey Data | Survey System</title>
+
+    <!-- FONTS & ICONS  -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&family=Roboto:wght@300&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+    <link href="css/main.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="css/style.css" type="text/css"/>
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
-
-        #map {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 80%;
-        }
-        .marker {
-            background-image: url('/image/mapbox-icon.png');
-            background-size: cover;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-        #actualizar{
-            alignment: right;
-            position: absolute;
-            width: available;
-        }
-    </style>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
 
 </head>
 <body>
+<!-- NAVIGATION BAR -->
+<nav class="navbar navbar-expand-lg navbar-dark shadow-md">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">Survey System</a>
+        <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarNavResponsive"
+                aria-controls="navbarNavResponsive"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse flex-grow-0" id="navbarNavResponsive">
+            <ul class="navbar-nav text-right">
+                <li class="nav-item">
+                    <a class="nav-link" href="/formulario">Survey Form</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Management
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="/user">Create User</a>
+                        <a class="dropdown-item" href="/surveydata">Survey Form  <span class="badge badge-pill badge-primary">Data</span></a>
+                    </div>
+                </li>
 
 
-<div id='map'></div>
-<a class="btn btn-primary" id="actualizar" role="button">Actualizar</a>
 
-<script>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-    mapboxgl.accessToken ='pk.eyJ1IjoiYW50aG9ueXNha2EiLCJhIjoiY2tnbjBrZWR4MGkwNDJ0cGczb2UxNTE4YiJ9.WsEmhirejFVApuNz9Ivtlw';
+<div class="jumbotron container-fluid">
+    <div class="col-12 text-center mt-n3" style="background-color: #0E0E0E !important;border-radius: 8px;">
+        <h3 class="heading">Survey Form - <span class="badge badge-primary">Geolocation Map</span></h3>
+        <div class="heading-underline mt-n3"></div>
+    </div>
 
-    var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/light-v10',
-       // center: [-96, 37.8], // starting position [lng, lat]
-        center:  [ -70.81, 19.18], // starting position [lng, lat]  lat = 19.18659946222421, long = -70.81595130441177
-        zoom: 8
-    });
+    <div id='map'>
+    </div>
+
+</div>
 
 
-    // code from the next step will go here!
-    var geojson = {
-        type: 'FeatureCollection',
-        features: [{
-            type: 'Feature',
-            geometry: {
-                type: 'Point',
-                //coordinates: [-77.032, 38.913]
-                coordinates: [ -70.6947546400147, 19.451109870850285]
-            },
-            properties: {
-                title: 'Mapbox',
-                description: 'Washington, D.C.'
-            }
-        },
-        ]
-    };
+<div class="jumbotron container-fluid">
+    <div class="col-12 text-center mt-n3" style="background-color: #0E0E0E !important;border-radius: 8px;">
+        <h3 class="heading">Survey Forms - <span class="badge badge-primary">Synchronized</span></h3>
+        <div class="heading-underline mt-n3"></div>
+    </div>
 
-    // add markers to map
-    geojson.features.forEach(function(marker) {
+    <div class="limiter">
+        <div class="container-table100">
+            <div class="wrap-table100">
+                <div class="table100">
+                    <table id="tableLocalForm">
+                        <thead>
+                        <tr class="table100-head">
+                            <th class="column1">Id</th>
+                            <th class="column1">Name</th>
+                            <th class="column2">Sector</th>
+                            <th class="column3">Grade</th>
+                            <th class="column3">Date</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbodyAdminForm">
+                        <!-- Dinamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-        // create a HTML element for each feature
-        var el = document.createElement('div');
-        el.className = 'marker';
 
-        // make a marker for each feature and add to the map
-        new mapboxgl.Marker(el)
-            .setLngLat(marker.geometry.coordinates)
-            .addTo(map);
-    });
-
-</script>
+<!-- Jquery JS-->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<!-- Vendor JS-->
+<script src="vendor/select2/select2.min.js"></script>
+<script src="vendor/datepicker/moment.min.js"></script>
+<script src="vendor/datepicker/daterangepicker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/geolocator/2.1.5/geolocator.min.js" integrity="sha512-R0ksqyRZYwP5ngAjS9KwXAPh4H0OiesjRspjvDn5NcgLeSqRWX+JYb792Aw0yuRKl9lDx3S9g+g/fr+DFgtpyg==" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-
+<!-- Main JS-->
+<script src="js/global.js"></script>
 <script src="js/maps.js"></script>
-
+<script src="js/main.js"></script>
 </body>
 </html>
 
