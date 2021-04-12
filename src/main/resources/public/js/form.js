@@ -1,5 +1,23 @@
 
 $(document).ready(function () {
+
+    let connectiviy = () => {
+        var online = window.navigator.onLine
+
+        if (online) {
+            $("#btnSyncData").show();
+            $("#online").show();
+            $("#offline").hide();
+
+        } else {
+            $("#offline").show();
+            $("#btnSyncData").hide();
+            $("#online").hide();
+        }
+    }
+    setInterval(connectiviy(),10000); //check internet each 10 seconds
+
+
     geolocator.config({
         language: "en",
     });
@@ -142,6 +160,7 @@ $(document).ready(function () {
             }
         }
     });
+
 
 
 });

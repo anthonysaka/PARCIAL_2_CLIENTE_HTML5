@@ -147,7 +147,7 @@ public class MainController {
         /**
          * Filtro para activarse antes de la llamadas al contexto.
          */
-        app.wsBefore("/mensajeServidor", wsHandler -> {
+        app.wsBefore("/ws/syncDataForm", wsHandler -> {
             System.out.println("Filtro para WS antes de la llamada ws");
             //ejecutar cualquier evento antes...
         });
@@ -160,9 +160,9 @@ public class MainController {
 
             ws.onMessage(ctx -> {
                 //Puedo leer los header, parametros entre otros.
-                ctx.headerMap();
+                /*ctx.headerMap();
                 ctx.pathParamMap();
-                ctx.queryParamMap();
+                ctx.queryParamMap();*/
                 //
                 System.out.println("Mensaje Recibido de "+ctx.getSessionId()+" ====== ");
                 System.out.println("Mensaje: "+ctx.message());
@@ -180,6 +180,7 @@ public class MainController {
                 java.util.Date date1=  new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dfT.getCreated_date());
                 Registry auxReg = new Registry(auxForm,dfT.getLatitude(), dfT.getLongitude(), date1);
                 RegistryServices.getInstancia().create(auxReg);
+
 
             });
 
@@ -202,7 +203,7 @@ public class MainController {
         /**
          * Filtro para activarse despues de la llamadas al contexto.
          */
-        app.wsAfter("/mensajeServidor", wsHandler -> {
+        app.wsAfter("/ws/syncDataForm", wsHandler -> {
             System.out.println("Filtro para WS despues de la llamada al WS");
             //ejecutar cualquier evento antes...
         });
