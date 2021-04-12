@@ -2,16 +2,16 @@ package encapsulations;
 
 import com.sun.istack.NotNull;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
 @Entity
 public class User implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @NotNull
     private String username;
     @NotNull
     private String password;
@@ -24,6 +24,7 @@ public class User implements Serializable {
     private List<Form> lista_forms;  ///AGREGAR SET & GET
 
     public User(String username, String password, String rol, String nombre) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.rol = rol;
@@ -34,7 +35,16 @@ public class User implements Serializable {
 
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     /*** Gets and Sets ***/
+
 
     public String getUsername() {
         return username;

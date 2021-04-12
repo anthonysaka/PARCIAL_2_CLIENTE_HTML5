@@ -130,7 +130,11 @@ public class MainController {
                 });
 
                 post("/crear", ctx -> {
-                    //ctx.render("/templates/home.html");
+                    Gson auxJson = new Gson();
+                    User user = auxJson.fromJson(ctx.body(),User.class); //User object from client request
+                    User nuewUs = new User(user.getUsername(), user.getPassword(), user.getRol(), user.getNombre());
+                    UserServices.getInstancia().create(nuewUs);
+                    ctx.json(nuewUs);
                 });
 
 
