@@ -756,7 +756,7 @@ input {
     justify-content: center;
     flex-wrap: wrap;
     padding: 33px 30px;
-    margin-top: -250px;
+   /* margin-top: -250px;*/
 }
 
 .wrap-table100 {

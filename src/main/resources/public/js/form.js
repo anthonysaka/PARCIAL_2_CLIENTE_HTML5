@@ -1,5 +1,6 @@
 
 $(document).ready(function () {
+    var webSocket;
 
     let connectiviy = () => {
         var online = window.navigator.onLine
@@ -112,7 +113,6 @@ $(document).ready(function () {
 
     // Make the function wait until the connection is made...
     function waitForSocketConnection(socket, callback){
-
         setTimeout(
             function () {
                 if (socket.readyState === 1) {
@@ -125,7 +125,7 @@ $(document).ready(function () {
                     waitForSocketConnection(socket, callback);
                 }
 
-            }, 500); // wait 500 milisecond for the connection...
+            }, 5); // wait 5 milisecond for the connection...
 
     }
 
@@ -136,19 +136,19 @@ $(document).ready(function () {
 
         if (auxData != null)  {
             jsonForms = JSON.parse(auxData);
-
+            console.log(jsonForms)
+            connectSocket();
             jsonForms.forEach((item,i) => {
                 if (item.sync_status === 0) {
                     flag = 1;
-                    connectSocket();
                     waitForSocketConnection(webSocket, function(){
                         webSocket.send(JSON.stringify(item));
                         console.log(item)
-                        webSocket.close();
                     });
-                    item.sync_status = 1
+                    item.sync_status = 1;
                 }
             });
+            //webSocket.close();
 
             console.log(jsonForms)
 
@@ -160,6 +160,9 @@ $(document).ready(function () {
                 alert("*** Nothing to Sync! ***")
             }
         }
+        setTimeout(function () {
+            webSocket.close();
+        },5000);
     });
 
 
