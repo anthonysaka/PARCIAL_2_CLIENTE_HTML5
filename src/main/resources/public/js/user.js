@@ -5,9 +5,9 @@ $(document).ready(function () {
 
         axios.post('http://localhost:7000/user/crear', {
             nombre: $("#nombre").val(),
-            user: $("#user").val(),
-            pasword: $("#password").val(),
-            subject: $("#subject").val(),
+            username: $("#username").val(),
+            password: $("#password").val(),
+            rol: $("#subject").val(),
         })
             .then((response) => {
                 console.log(response);

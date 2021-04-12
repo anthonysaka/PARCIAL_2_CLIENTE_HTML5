@@ -123,9 +123,14 @@ public class MainController {
                 post("/crear", ctx -> {
                     Gson auxJson = new Gson();
                     User user = auxJson.fromJson(ctx.body(),User.class); //User object from client request
-                    User nuewUs = new User(user.getUsername(), user.getPassword(), user.getRol(), user.getNombre());
-                    UserServices.getInstancia().create(nuewUs);
-                    ctx.json(nuewUs);
+                    System.out.println("USUARIOOO" +user.getNombre() + user.getUsername()+ user.getPassword()+user.getRol());
+
+                     Gson newU = new Gson();
+                     User usuario = new User(user.getUsername(), user.getPassword(), user.getRol(), user.getNombre());
+                     UserServices.getInstancia().create(usuario);
+                    System.out.println("CREADOOOOO");
+                    String u = newU.toJson(usuario);
+                    ctx.json(u);
                 });
             });
 
