@@ -1,7 +1,10 @@
 package controllers;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import encapsulations.Form;
 import encapsulations.FormDataTemplate;
 import encapsulations.Registry;
@@ -19,9 +22,7 @@ import services.UserServices;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import static io.javalin.apibuilder.ApiBuilder.*;
 
@@ -129,21 +130,29 @@ public class MainController {
                 });
             });
 
-            path("/surveydata", ()-> {
-                get("/", ctx -> {
+            path("/surveydata", () -> {
+
+                get("/",ctx -> {
                     ctx.render("/templates/maps.html");
-                });
-
-                get("/maps", ctx -> {
-                    List<Registry> auxReg = RegistryServices.getInstancia().findAll();
-                    System.out.println(auxReg.get(0));
-                    Gson auxGson = new Gson();
-                    //String jsonString = auxGson.toJson(auxReg);
-                   // System.out.println(jsonString);
-                });
-
+                });;
             });
+            path("/loadmarker", () ->{
+                //NO TOCAR
+                get("/", ctx -> {
+                    List<Registry> auxList = RegistryServices.getInstancia().findAll();
+                    ArrayList<String> sl = new ArrayList<>();
+                    for (Registry r: auxList) {
+                        String x = "{latitude:" + String.valueOf(r.getLatitude()) + "," + "longitude:"+String.valueOf(r.getLongitude())+"}";
+                        sl.add(x);
+                    }
+                    System.out.println(sl);
+                    Gson aux = new Gson();
+                    String json = aux.toJson(sl);
+                    System.out.println(json);
+                    ctx.json(json);
 
+                });
+            });
 
         });
 

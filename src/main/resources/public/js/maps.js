@@ -11,11 +11,15 @@ $(document).ready(function () {
     });
 
     let loadMarkeronMap = () => {
-        axios.get('http://localhost:7000/surveydata/maps', {
+
+        axios.get('http://localhost:7000/loadmarker', {
         })
         .then((response) => {
             console.log(response);
             if (response.status === 200){
+                console.log(response.data);
+                let auxJson = JSON.parse(response.data);
+                console.log(auxJson[0]['latitude'])
 
             }
         }, (error) => {
