@@ -1,7 +1,5 @@
 
-    $(document).ready(function () {
-
-        $("#loginForm").submit(function (event) {
+$("#loginForm").submit(function (event) {
             event.preventDefault();
             console.log("ENTRE")
             axios.post('http://localhost:7000/authenticate', {
@@ -39,7 +37,4 @@
 
         }
 
-
-
-    });
 

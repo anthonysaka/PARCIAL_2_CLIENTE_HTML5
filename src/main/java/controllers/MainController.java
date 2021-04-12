@@ -2,14 +2,21 @@ package controllers;
 
 
 import com.google.gson.Gson;
+import encapsulations.Form;
+import encapsulations.Registry;
 import encapsulations.User;
 import io.javalin.Javalin;
 import io.javalin.plugin.json.JavalinJson;
 import org.h2.util.json.JSONObject;
 import org.jasypt.util.text.StrongTextEncryptor;
+import services.RegistryServices;
 import services.UserServices;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 import static io.javalin.apibuilder.ApiBuilder.*;
@@ -24,7 +31,7 @@ public class MainController {
         this.app = app;
 
         User admin = new User("admin", "admin","admin","Anthony Sakamoto");
-        UserServices.getInstancia().create(admin);
+        UserServices.getInstancia().modify(admin);
 
     }
 
@@ -108,6 +115,37 @@ public class MainController {
 
 
             });
+            path("/maps", () -> {
+
+                get("/", ctx -> {
+                    ctx.render("/templates/maps.html");
+                });
+
+                get("/crear", ctx -> {
+                    String nombre = ctx.formParam("nombre");
+                    String sector = ctx.formParam("sector");
+                    String academico = ctx.formParam("selected");
+
+                    // Form form = new Form("","",);
+                });
+
+                post("/actualizar", ctx -> {
+                   // Form for1 = new Form("wen","basico","admin");
+
+                    List<Registry> registros;
+                    EntityManager em = RegistryServices.getInstancia().getEntityManager();
+                    String query1 = "SELECT r.longitude, r.latitude FROM Registry r " ;
+                    Query q1 = em.createQuery(query1);
+
+                    registros = q1.getResultList();
+                    Gson auxJson = new Gson();
+                    String reg = auxJson.toJson(registros);
+                    ctx.json(reg);
+
+                });
+
+            });
+
 
             path("/user", ()->{
 
