@@ -1,5 +1,6 @@
 package encapsulations;
 
+import com.sun.istack.NotNull;
 import org.hibernate.annotations.ManyToAny;
 
 import javax.persistence.*;
@@ -8,16 +9,21 @@ import java.io.Serializable;
 @Entity
 public class Form implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
     private String nombre;
+    @NotNull
+    private String sector;
+    @NotNull
     private String nivel_escolar;
-
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     private User user_creador;
 
-    public Form( String nombre, String nivel_escolar, User user_creador) {
-        this.id = id;
+    public Form( String nombre, String sector, String nivel_escolar, User user_creador) {
         this.nombre = nombre;
+        this.sector = sector;
         this.nivel_escolar = nivel_escolar;
         this.user_creador = user_creador;
     }
@@ -39,6 +45,14 @@ public class Form implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getSector() {
+        return sector;
+    }
+
+    public void setSector(String sector) {
+        this.sector = sector;
     }
 
     public String getNivel_escolar() {

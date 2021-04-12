@@ -20,7 +20,9 @@ public class Main {
 
         DataBaseH2Services.startDb();
 
-        new MainController(app).routesControl();
+        MainController mc = new MainController(app);
+        mc.routesControl();
+        mc.routesWsControl();
     }
 
 
