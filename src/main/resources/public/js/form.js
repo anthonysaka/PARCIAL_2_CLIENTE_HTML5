@@ -90,14 +90,21 @@ $(document).ready(function () {
 
             jsonForms.forEach(function (item,i){
                 var markup = "<tr><td class=\"column1\">" + item.name + "</td><td class=\"column2\">" + item.sector + "</td><td class=\"column3\">" + item.grade + "</td><td class=\"column3\">" + item.created_date +
-                    "</td><td class=\"column2\"><button type='button' class=\"btn btn-primary btn-md rounded \">Edit</button>" +
-                    "</td><td class=\"column2\"><button type='button' class=\"btn btn-danger btn-md rounded \">Delete</button></td></tr>";
+                    "</td><td class=\"column2\"><button type='button' id='btnEdit' class=\"btn btn-primary btn-md rounded \">Edit</button>" +
+                    "</td><td class=\"column2\"><button type='button' id='btnDelete' class=\"btn btn-danger btn-md rounded \">Delete</button></td></tr>";
                 $("table tbody").append(markup);
             })
         }
     }
-
     loadOnTableFormLocalStorage();
+
+    $("#tbodyLocalForm").on('click', '#btnEdit', function() {
+        //alert("PROBANDO EDIT")
+    });
+
+    $("#tbodyLocalForm").on('click', '#btnDelete', function() {
+        //alert("PROBANDO DELETE")
+    });
 
     let connectSocket = () => {
         webSocket = new WebSocket("ws://" + location.hostname + ":" + location.port + "/ws/syncDataForm");
@@ -132,7 +139,7 @@ $(document).ready(function () {
         let jsonForms;
         let flag = 0;
 
-        if (auxData != null)  {
+        if (auxData != null || auxData === "")  {
             jsonForms = JSON.parse(auxData);
             console.log(jsonForms)
             connectSocket();
@@ -156,7 +163,11 @@ $(document).ready(function () {
 
             if (flag === 0){
                 alert("*** Nothing to Sync! ***")
+            } else {
+                alert("*** Sync Success! ***")
             }
+        } else{
+            alert("*** Nothing to Sync! ***")
         }
         setTimeout(function () {
             webSocket.close();

@@ -146,18 +146,22 @@ public class MainController {
                     ctx.render("/templates/maps.html");
                 });;
             });
+
             path("/loadmarker", () ->{
                 //NO TOCAR
                 get("/", ctx -> {
                     List<Registry> auxList = RegistryServices.getInstancia().findAll();
-                    ArrayList<String> sl = new ArrayList<>();
-                    for (Registry r: auxList) {
-                        String x = "{latitude:" + String.valueOf(r.getLatitude()) + "," + "longitude:"+String.valueOf(r.getLongitude())+"}";
-                        sl.add(x);
-                    }
-                    System.out.println(sl);
+                    List<FormDataTemplate> auxData = new ArrayList<>();
                     Gson aux = new Gson();
-                    String json = aux.toJson(sl);
+                    ArrayList<String> json = new ArrayList<>() ;
+                    for (Registry r: auxList) {
+                        FormDataTemplate f = new FormDataTemplate(r.getAuxForm().getNombre(),r.getAuxForm().getSector(),r.getAuxForm().getNivel_escolar(),
+                                r.getLatitude(),r.getLongitude(),String.valueOf(r.getCreated_date()),r.getAuxForm().getUser_creador().getUsername(),
+                                r.getAuxForm().getUser_creador().getId());
+                        json.add(aux.toJson(f));
+                    }
+
+                    System.out.println("FUNCIONAAAAAAA");
                     System.out.println(json);
                     ctx.json(json);
 
