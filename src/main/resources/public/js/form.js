@@ -31,7 +31,7 @@ $(document).ready(function () {
         desiredAccuracy: 30,    // meters
         fallbackToIP: true,     // fallback to IP if Geolocation fails or rejected
         addressLookup: false,    // requires Google API key if true
-        timezone: false,         // requires Google API key if true
+        timezone: false,         // requAires Google API key if true
     };
 
     $("#surveyForm").submit(function (event) {
@@ -50,7 +50,6 @@ $(document).ready(function () {
             const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
             const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
             const dateTime = date +' '+ time;
-
             let formdata = {
                 name: $("#name").val(),
                 sector: $("#sector").val(),
@@ -63,7 +62,6 @@ $(document).ready(function () {
                 sync_status: 0
             }
             confirm("*** DATOS A ENVIAR ***\n\n"+JSON.stringify(formdata)) ? savetolocalstorage(formdata) : null;
-
         });
     });
 
