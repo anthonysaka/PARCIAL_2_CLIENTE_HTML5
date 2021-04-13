@@ -20,7 +20,7 @@ $(document).ready(function () {
         event.preventDefault();
         console.log("ENTRE")
 
-        axios.post('http://'+ location.hostname + ":" + location.port +'/user/crear', {
+        axios.post('https://'+ location.hostname + ":" + location.port +'/user/crear', {
             nombre: $("#nombre").val(),
             username: $("#username").val(),
             password: $("#password").val(),

@@ -111,7 +111,7 @@ $(document).ready(function () {
     });
 
     let connectSocket = () => {
-        webSocket = new WebSocket("ws://" + location.hostname + ":" + location.port + "/ws/syncDataForm");
+        webSocket = new WebSocket("wss://" + location.hostname + ":" + location.port + "/ws/syncDataForm");
 
         //indicando los eventos:
         webSocket.onopen  = function(e){ console.log("Conectado - status "+this.readyState); };

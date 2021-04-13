@@ -2,7 +2,7 @@
 $("#loginForm").submit(function (event) {
             event.preventDefault();
             console.log("ENTRE")
-            axios.post('http://' + location.hostname + ":" + location.port +'/authenticate', {
+            axios.post('https://' + location.hostname + ":" + location.port +'/authenticate', {
                 username: $("#username").val(),
                 password: $("#password").val(),
             })
