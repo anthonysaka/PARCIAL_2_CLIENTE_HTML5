@@ -12,7 +12,7 @@ $(document).ready(function () {
 
     let loadMarkeronMap = () => {
 
-        axios.get('http://localhost:7000/loadmarker', {
+        axios.get('http://'+ location.hostname + ":" + location.port +'/loadmarker', {
         })
         .then((response) => {
             console.log(response);
@@ -75,7 +75,7 @@ $(document).ready(function () {
     loadMarkeronMap();
 
     let loadOnTableSyncForm = () => {
-        axios.get('http://localhost:7000/loadmarker', {
+        axios.get('http://'+ location.hostname + ":" + location.port +'loadmarker', {
         })
             .then((response) => {
                 console.log(response);
