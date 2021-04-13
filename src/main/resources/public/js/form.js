@@ -134,7 +134,7 @@ $(document).ready(function () {
         let jsonForms;
         let flag = 0;
 
-        if (auxData != null)  {
+        if (auxData != null || auxData === "")  {
             jsonForms = JSON.parse(auxData);
             console.log(jsonForms)
             connectSocket();
@@ -158,7 +158,11 @@ $(document).ready(function () {
 
             if (flag === 0){
                 alert("*** Nothing to Sync! ***")
+            } else {
+                alert("*** Sync Success! ***")
             }
+        } else{
+            alert("*** Nothing to Sync! ***")
         }
         setTimeout(function () {
             webSocket.close();

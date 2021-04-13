@@ -9,67 +9,115 @@
     <!-- Title Page-->
     <title>Survey System | User</title>
 
+    <!-- Title Page-->
+    <title>User | Survey System</title>
     <!-- Icons font CSS-->
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
     <!-- Vendor CSS-->
     <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
-    <link href="css/style.css" rel="stylesheet" media="all">
-    <link href="css/user.css" rel="stylesheet" media="all">
     <link href="css/main.css" rel="stylesheet" media="all">
-    <link href="css/util.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="css/style.css" type="text/css"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
 
 
 </head>
 
 <body>
+<!-- NAVIGATION BAR -->
+<nav class="navbar navbar-expand-lg navbar-dark shadow-md">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">Survey System</a>
+        <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarNavResponsive"
+                aria-controls="navbarNavResponsive"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-<div class="page-wrapper p-t-130 p-b-100 font-poppins">
-    <div class="wrapper wrapper--w680">
-        <div class="card card-4">
-            <div class="card-body">
+        <div class="collapse navbar-collapse flex-grow-0" id="navbarNavResponsive">
+            <ul class="navbar-nav text-right">
+                <li class="nav-item">
+                    <a class="nav-link" href="/formulario">Survey Form</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Management
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="/user">Create User</a>
+                        <a class="dropdown-item" href="/surveydata">Survey Form  <span class="badge badge-pill badge-primary">Data</span></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</nav>
+
+<div class="page-wrapper p-t-45 p-b-50">
+    <div class="wrapper wrapper--w790">
+        <div class="card card-5">
+            <div class="card-heading">
                 <h2 class="title">Registrar Usuario</h2>
+            </div>
+            <div class="card-body">
                 <form  id="UserNew" method="POST" name="/user/crear">
-                    <div class="row row-space">
-                        <div class="col-2">
+                    <div class="form-row">
+                        <div class="name">Name</div>
+                        <div class="value">
                             <div class="input-group">
-                                <label class="label">Nombre</label>
-                                <input class="input--style-4" type="text" name="nombre" id="nombre">
+                                <input class="input--style-5" type="text" name="nombre" id="nombre" required>
                             </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="input-group">
-                                <label class="label">Usuario</label>
-                                <input class="input--style-4" type="text" name="username" id="username">
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="input-group">
-                                <label class="label">Password</label>
-                                <input class="input--style-4" type="text" name="password" id="password">
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="input-group">
-                        <label class="label">Rol</label>
-                        <div class="rs-select2 js-select-simple select--no-search">
-                            <select name="subject" id="subject">
-                                <option disabled="disabled" selected="rol">Choose option</option>
-                                <option value="Administrador">Admin</option>
-                                <option value="Encuestador">Encuestador</option>
-                            </select>
-                            <div class="select-dropdown"></div>
                         </div>
                     </div>
-                    <div class="p-t-15">
-                        <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
+                    <div class="form-row">
+                        <div class="name">User</div>
+                        <div class="value">
+                            <div class="input-group">
+                                <input class="input--style-5" type="text" name="username" id="username" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name">Password</div>
+                        <div class="value">
+                            <div class="input-group">
+                                <input class="input--style-5" type="password" name="password" id="password" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="name">Rol</div>
+                        <div class="value">
+                            <div class="input-group">
+                                <div class="rs-select2 js-select-simple select--no-search">
+                                    <select name="subject" id="subject">
+                                        <option disabled="disabled" selected="rol">Choose option</option>
+                                        <option value="Administrador">Admin</option>
+                                        <option value="Encuestador">Encuestador</option>
+                                    </select>
+                                    <div class="select-dropdown"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group d-flex align-items-center justify-content-center mt-4">
+                        <button type="submit" class="btn btn--blue rounded submit p-3 px-5">Submit</button>
                     </div>
                 </form>
             </div>
@@ -77,19 +125,21 @@
     </div>
 </div>
 
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-<!-- Bootstrap Bundle with Popper -->
+<!-- Jquery JS-->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-
 <!-- Vendor JS-->
-<script src="../public/vendor/select2/select2.min.js"></script>
-<script src="../public/vendor/datepicker/moment.min.js"></script>
-<script src="../public/vendor/datepicker/daterangepicker.js"></script>
-
+<script src="vendor/select2/select2.min.js"></script>
+<script src="vendor/datepicker/moment.min.js"></script>
+<script src="vendor/datepicker/daterangepicker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/geolocator/2.1.5/geolocator.min.js" integrity="sha512-R0ksqyRZYwP5ngAjS9KwXAPh4H0OiesjRspjvDn5NcgLeSqRWX+JYb792Aw0yuRKl9lDx3S9g+g/fr+DFgtpyg==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <!-- Main JS-->
-<script src="js/user.js"></script>
+<script src="js/global.js"></script>
+<script src="js/form.js"></script>
+<script src="js/main.js"></script>
+
 
 </body><
 
