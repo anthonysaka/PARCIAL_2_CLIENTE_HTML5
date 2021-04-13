@@ -16,7 +16,7 @@ $(document).ready(function () {
             $("#online").hide();
         }
     }
-    setInterval(connectiviy(),10000); //check internet each 10 seconds
+    setInterval(connectiviy(),3000); //check internet each 10 seconds
 
 
     geolocator.config({

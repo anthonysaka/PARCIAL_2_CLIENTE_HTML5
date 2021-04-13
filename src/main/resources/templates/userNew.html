@@ -51,6 +51,9 @@
         <div class="collapse navbar-collapse flex-grow-0" id="navbarNavResponsive">
             <ul class="navbar-nav text-right">
                 <li class="nav-item">
+                    <a class="nav-link" href="/logout">LOGOUT</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/formulario">Survey Form</a>
                 </li>
                 <li class="nav-item dropdown">
@@ -73,9 +76,11 @@
         <div class="card card-5">
             <div class="card-heading">
                 <h2 class="title">Registrar Usuario</h2>
+                <span id="online" class="badge badge-success">ONLINE!</span>
+                <span id="offline" class="badge badge-danger">OFFLINE!</span>
             </div>
             <div class="card-body">
-                <form  id="UserNew" method="POST" name="/user/crear">
+                <form  id="UserNew" method="POST" action="/user/crear">
                     <div class="form-row">
                         <div class="name">Name</div>
                         <div class="value">
@@ -117,7 +122,7 @@
                         </div>
                     </div>
                     <div class="form-group d-flex align-items-center justify-content-center mt-4">
-                        <button type="submit" class="btn btn--blue rounded submit p-3 px-5">Submit</button>
+                        <button type="submit" id="btnAddUser" class="btn btn--blue rounded submit p-3 px-5">Submit</button>
                     </div>
                 </form>
             </div>
@@ -135,9 +140,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/geolocator/2.1.5/geolocator.min.js" integrity="sha512-R0ksqyRZYwP5ngAjS9KwXAPh4H0OiesjRspjvDn5NcgLeSqRWX+JYb792Aw0yuRKl9lDx3S9g+g/fr+DFgtpyg==" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!-- Jquery JS-->
+<script src="vendor/jquery/jquery.min.js"></script>
 <!-- Main JS-->
 <script src="js/global.js"></script>
-<script src="js/form.js"></script>
+<script src="js/user.js"></script>
 <script src="js/main.js"></script>
 
 

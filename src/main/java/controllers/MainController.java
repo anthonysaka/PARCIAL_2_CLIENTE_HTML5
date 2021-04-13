@@ -104,6 +104,13 @@ public class MainController {
             });
 
             path("/formulario", () -> {
+                before("/", ctx -> {
+                    User auxUser = ctx.sessionAttribute("user_logged");
+                    if (auxUser == null){
+                        tempURI = ctx.req.getRequestURI();
+                        ctx.redirect("/login");
+                    }
+                });
 
                 get("/", ctx -> {
                     ctx.render("/templates/form.html");
@@ -118,6 +125,13 @@ public class MainController {
             });
 
             path("/user", ()->{
+                before("/", ctx -> {
+                    User auxUser = ctx.sessionAttribute("user_logged");
+                    if (auxUser == null){
+                        tempURI = ctx.req.getRequestURI();
+                        ctx.redirect("/login");
+                    }
+                });
                 get("/", ctx -> {
                     ctx.render("/templates/userNew.html");
                 });
@@ -139,8 +153,25 @@ public class MainController {
 
 
             });
+            path("/logout", () -> {
+                get("/",ctx -> {
+                    if (ctx.sessionAttribute("user") != null){
+                        ctx.sessionAttribute("user",null);
+                        ctx.req.getSession().invalidate();
+                    }
+                    ctx.redirect("/login");
+                });
+
+            });
 
             path("/surveydata", () -> {
+                before("/", ctx -> {
+                    User auxUser = ctx.sessionAttribute("user_logged");
+                    if (auxUser == null){
+                        tempURI = ctx.req.getRequestURI();
+                        ctx.redirect("/login");
+                    }
+                });
 
                 get("/",ctx -> {
                     ctx.render("/templates/maps.html");
@@ -148,7 +179,8 @@ public class MainController {
             });
 
             path("/loadmarker", () ->{
-                //NO TOCAR
+
+
                 get("/", ctx -> {
                     List<Registry> auxList = RegistryServices.getInstancia().findAll();
                     List<FormDataTemplate> auxData = new ArrayList<>();

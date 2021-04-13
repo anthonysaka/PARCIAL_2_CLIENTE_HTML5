@@ -1,4 +1,21 @@
 $(document).ready(function () {
+
+    let connectiviy = () => {
+        var online = window.navigator.onLine
+
+        if (online) {
+            $("#btnAddUser").show();
+            $("#online").show();
+            $("#offline").hide();
+
+        } else {
+            $("#offline").show();
+            $("#btnAddUser").hide();
+            $("#online").hide();
+        }
+    }
+    setInterval(connectiviy(),3000); //check internet each 10 seconds
+
     $("#UserNew").submit(function (event) {
         event.preventDefault();
         console.log("ENTRE")
