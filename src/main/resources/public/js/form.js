@@ -90,20 +90,24 @@ $(document).ready(function () {
 
             jsonForms.forEach(function (item,i){
                 var markup = "<tr><td class=\"column1\">" + item.name + "</td><td class=\"column2\">" + item.sector + "</td><td class=\"column3\">" + item.grade + "</td><td class=\"column3\">" + item.created_date +
-                    "</td><td class=\"column2\"><button type='button' id='btnEdit' class=\"btn btn-primary btn-md rounded \">Edit</button>" +
-                    "</td><td class=\"column2\"><button type='button' id='btnDelete' class=\"btn btn-danger btn-md rounded \">Delete</button></td></tr>";
+                   "</td><td class=\"column2\"><button type='button' id='btnDelete' class=\"btn btn-danger btn-md rounded \">Delete</button></td></tr>";
                 $("table tbody").append(markup);
             })
         }
     }
     loadOnTableFormLocalStorage();
 
-    $("#tbodyLocalForm").on('click', '#btnEdit', function() {
-        //alert("PROBANDO EDIT")
-    });
-
     $("#tbodyLocalForm").on('click', '#btnDelete', function() {
         //alert("PROBANDO DELETE")
+        var row_index = $(this).closest("tr").index();
+        alert(row_index)
+        let auxData = JSON.parse(localStorage.getItem('form_local_saved'));
+        let jsonForms = [];
+        jsonForms = auxData;
+        jsonForms.splice(row_index,1);
+
+        localStorage.setItem('form_local_saved',JSON.stringify(jsonForms));
+        loadOnTableFormLocalStorage();
     });
 
     let connectSocket = () => {
