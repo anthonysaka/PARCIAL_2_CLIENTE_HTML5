@@ -75,7 +75,7 @@ $(document).ready(function () {
     loadMarkeronMap();
 
     let loadOnTableSyncForm = () => {
-        axios.get('http://'+ location.hostname + ":" + location.port +'loadmarker', {
+        axios.get('https://'+ location.hostname + ":" + location.port +'loadmarker', {
         })
             .then((response) => {
                 console.log(response);
