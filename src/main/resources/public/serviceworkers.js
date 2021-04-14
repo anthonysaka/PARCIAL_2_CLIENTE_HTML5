@@ -29,7 +29,8 @@ var urlsToCache = [
     '/home',
     '/formulario',
     '/surveydata',
-    '/user'
+    '/user',
+    '/authenticate'
 ];
 //ruta para fallback.
 var fallback = "../templates/home.html"
